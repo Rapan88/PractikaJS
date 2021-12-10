@@ -4,14 +4,13 @@ function _createModal(options){
     modal.classList.add("amodal")
     modal.insertAdjacentHTML("afterbegin",`
     <div class="modal-overlay">
-        <div class="modal-window">
+        <div class="modal-window" id="modal-window">
             <div class="modal-header">
-                <span class="modal-title">Header</span>
+                <span class="modal-title" id="header">Header</span>
                 <span class="modal-close">&times;</span>
             </div>
             <div class="modal-body">
-                <p>Lorem ipsum dolor sit amet.</p>
-                <p>Lorem ipsum dolor sit amet.</p>
+                <p id="p_body">Lorem ipsuqwm dolor sit amet.</p>
             </div>
             <div class="modal-footer">
                 <button>Ok</button>
@@ -24,9 +23,9 @@ function _createModal(options){
     return modal
 }
 
-// title: string
-// closable: boolean
-// content: string
+// title: string  ++
+// closable: boolean 
+// content: string  ++
 // width: string('400px')
 // destroy(): void
 // Вікно повинне закриватись
@@ -42,7 +41,6 @@ $.modal = function (options){
     let closing = false
     return{
          open() {
-
             !closing && $modal.classList.add(`open`)
          },
          close() {
@@ -54,6 +52,14 @@ $.modal = function (options){
                 closing = false
             },ANIMATION_SPEED)
          },
-         destroy() {}
+         destroy() {},
+         setOptions(title,content,width) {
+            document.getElementById('header').textContent = `${title}`
+            document.getElementById('p_body').textContent = `${content}`
+            // document.getElementById('modal-window').style.width
+
+         }
+
     }
 }
+
